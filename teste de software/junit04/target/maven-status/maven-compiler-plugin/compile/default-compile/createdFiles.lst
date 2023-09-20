@@ -1,0 +1,13 @@
+br\ifmt\cba\negocio\NegocioException.class
+br\ifmt\cba\vo\EnumUF.class
+br\ifmt\cba\persistencia\ConexaoBD.class
+br\ifmt\cba\vo\EnumSexo.class
+br\ifmt\cba\vo\AlunoVO.class
+br\ifmt\cba\execucao\EnumMenu.class
+br\ifmt\cba\persistencia\PersistenciaException.class
+br\ifmt\cba\vo\EnderecoVO.class
+br\ifmt\cba\persistencia\AlunoDAO.class
+br\ifmt\cba\execucao\Principal.class
+br\ifmt\cba\execucao\Principal$1.class
+br\ifmt\cba\negocio\AlunoNegocio.class
+br\ifmt\cba\persistencia\DAO.class
