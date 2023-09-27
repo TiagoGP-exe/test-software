@@ -1,5 +1,6 @@
 package br.ifmt.cba.negocio;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -39,7 +40,37 @@ public class AlunoNegocioIntegracaoTest {
 
     @Test
     public void testAlterar() {
-        // Add your test logic here
+        try {
+            // Preparar um aluno de teste
+            AlunoVO alunoVO = new AlunoVO();
+            alunoVO.setNome("Nome Antigo");
+            alunoVO.setNomeMae("Mae Antiga");
+            alunoVO.setNomePai("Pai Antigo");
+            alunoVO.setSexo(EnumSexo.FEMININO); // Alterar o sexo para o novo valor
+            alunoVO.setEndereco(new EnderecoVO("Rua Antiga", 50, "Bairro Antigo", "Cidade Antiga", EnumUF.MT));
+
+            // Inserir o aluno de teste no banco de dados
+            alunoNegocio.inserir(alunoVO);
+
+            // Modificar os dados do aluno para os novos valores
+            alunoVO.setNome("Novo Nome");
+            alunoVO.setNomeMae("Nova Mae");
+            alunoVO.setNomePai("Novo Pai");
+            alunoVO.setSexo(EnumSexo.MASCULINO); // Novo valor de sexo
+            alunoVO.setEndereco(new EnderecoVO("Nova Rua", 60, "Novo Bairro", "Nova Cidade", EnumUF.SP));
+
+            // Executar o método que você deseja testar (alterar o aluno)
+            alunoNegocio.alterar(alunoVO);
+
+            // Recuperar o aluno modificado do banco de dados
+            AlunoVO alunoModificado = alunoNegocio.pesquisaMatricula(alunoVO.getMatricula());
+
+            // Verificar se as informações foram alteradas corretamente
+            assertTrue(comparaAlunoVO(alunoVO, alunoModificado));
+
+        } catch (NegocioException e) {
+            fail("Falha no teste de alteração: " + e.getMessage());
+        }
     }
 
     @Test
